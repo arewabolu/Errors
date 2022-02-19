@@ -1,0 +1,1 @@
+This is an error logger which writes your errors to your file
