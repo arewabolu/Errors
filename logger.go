@@ -11,9 +11,12 @@ func check(e error) {
 	}
 }
 
+//Appends err to file
 func ErrLogger(t string) {
+	//
+	var Fname string
 	buf := []byte(t)
-	file, err := os.OpenFile("Errorlog", os.O_CREATE|os.O_APPEND, 0644)
+	file, err := os.OpenFile(Fname, os.O_CREATE|os.O_APPEND, 0644)
 	check(err)
 	defer file.Close()
 
