@@ -12,15 +12,11 @@ func check(e error) {
 }
 
 //Appends err to file
-func ErrLogger(t string) {
-	//
-	var Fname string
-	buf := []byte(t)
-	file, err := os.OpenFile(Fname, os.O_CREATE|os.O_APPEND, 0644)
+func ErrLogger(e error, Fname string) {
+	file, err := os.OpenFile(Fname, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	check(err)
 	defer file.Close()
-
-	_, err2 := file.WriteAt(buf, int64(len(buf)))
-	check(err2)
+	log.SetOutput(file)
+	log.Println(e)
 
 }
