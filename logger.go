@@ -11,12 +11,14 @@ func check(e error) {
 	}
 }
 
-//Appends err to file
+//Appends err to filei
 func ErrLogger(e error, Fname string) {
+
 	file, err := os.OpenFile(Fname, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	check(err)
 	defer file.Close()
-	log.SetOutput(file)
-	log.Println(e)
+	logger := log.New(file, "prefix", log.LstdFlags|log.Lshortfile)
+	logger.SetOutput(file)
+	logger.Println(e)
 
 }
